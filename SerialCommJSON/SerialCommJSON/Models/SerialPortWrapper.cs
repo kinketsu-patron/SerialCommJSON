@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 
 namespace SerialCommJSON.Models
@@ -40,7 +41,9 @@ namespace SerialCommJSON.Models
             {
                 try
                 {
-                    string message = m_SerialPort.ReadExisting();
+                    Human human;
+                    string message = m_SerialPort.ReadLine();
+                    human = JsonSerializer.Deserialize<Human>( message );
 
                     Application.Current.Dispatcher.Invoke( ( ) =>
                     {

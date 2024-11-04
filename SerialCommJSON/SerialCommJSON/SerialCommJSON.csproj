@@ -7,5 +7,6 @@
   <ItemGroup>
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
     <PackageReference Include="System.IO.Ports" Version="8.0.0" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
 </Project>
