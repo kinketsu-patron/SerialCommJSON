@@ -27,7 +27,7 @@ namespace SerialCommJSON.Models
             set { SetProperty( ref m_SelectedPort, value ); }
         }
 
-        public SerialPortWrapper( MessageProvider p_MessageProvider )
+        public SerialPortWrapper( )
         {
             m_SerialPort = new SerialPort( );
             m_SerialPort.BaudRate = 9600;
@@ -45,10 +45,6 @@ namespace SerialCommJSON.Models
                     string message = m_SerialPort.ReadLine();
                     human = JsonSerializer.Deserialize<Human>( message );
 
-                    Application.Current.Dispatcher.Invoke( ( ) =>
-                    {
-                        p_MessageProvider.SetMessage( message );
-                    } );
                 } catch ( Exception ex )
                 {
                     MessageBox.Show( ex.Message );

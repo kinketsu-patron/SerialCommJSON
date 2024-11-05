@@ -7,7 +7,6 @@ namespace SerialCommJSON.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private MessageProvider m_MessageProvider = null;
         private SerialPortWrapper m_SerialPortWrapper = null;
 
         public DelegateCommand ConnectCommand { get; }
@@ -25,18 +24,10 @@ namespace SerialCommJSON.ViewModels
             set { m_SerialPortWrapper.SelectedPort = value; }
         }
 
-        public string RecvMessage
-        {
-            get { return m_MessageProvider.RecvMessage; }
-            set { m_MessageProvider.RecvMessage = value; }
-        }
-
         public MainWindowViewModel( )
         {
-            m_MessageProvider = new MessageProvider( );
-            m_SerialPortWrapper = new SerialPortWrapper( m_MessageProvider );
+            m_SerialPortWrapper = new SerialPortWrapper( );
 
-            m_MessageProvider.PropertyChanged += ( sender, e ) => RaisePropertyChanged( e.PropertyName );
             m_SerialPortWrapper.PropertyChanged += ( sender, e ) => RaisePropertyChanged( e.PropertyName );
 
             ConnectCommand = new DelegateCommand( Connect_Click );
